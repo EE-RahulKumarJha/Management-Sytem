@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Management System</title>
+	
 </head>
 <body>
 	<h1>Management System</h1>
