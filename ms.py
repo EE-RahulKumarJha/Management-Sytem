@@ -1,45 +1,66 @@
-students = {}  # create an empty dictionary to store student data
+# Define a dictionary to store customer data
+customers = {}
 
-def add_student():
-    name = input("Enter student name: ")
-    age = input("Enter student age: ")
-    grade = input("Enter student grade: ")
-    students[name] = {"age": age, "grade": grade}  # add the student data to the dictionary
+# Function to add a new customer
+def add_customer():
+    name = input("Enter customer name: ")
+    email = input("Enter customer email: ")
+    phone = input("Enter customer phone: ")
+    customers[name] = {"email": email, "phone": phone}
+    print(f"Customer {name} added successfully")
 
-def remove_student():
-    name = input("Enter name of student to remove: ")
-    if name in students:
-        del students[name]  # remove the student data from the dictionary
-        print(name, "has been removed from the system.")
+# Function to retrieve a customer's information
+def get_customer():
+    name = input("Enter customer name: ")
+    customer = customers.get(name)
+    if customer:
+        print(f"Name: {name}, Email: {customer['email']}, Phone: {customer['phone']}")
     else:
-        print(name, "is not in the system.")
+        print(f"Customer {name} not found")
 
-def view_students():
-    if len(students) == 0:
-        print("There are no students in the system.")
+# Function to update a customer's information
+def update_customer():
+    name = input("Enter customer name: ")
+    customer = customers.get(name)
+    if customer:
+        email = input("Enter new email (leave blank to keep current): ")
+        phone = input("Enter new phone (leave blank to keep current): ")
+        if email:
+            customer['email'] = email
+        if phone:
+            customer['phone'] = phone
+        print(f"Customer {name} updated successfully")
     else:
-        for name, data in students.items():
-            print(name)
-            print("\tAge:", data["age"])
-            print("\tGrade:", data["grade"])
+        print(f"Customer {name} not found")
 
-def main():
-    while True:
-        print("1. Add student")
-        print("2. Remove student")
-        print("3. View students")
-        print("4. Quit")
-        choice = input("Enter your choice (1-4): ")
-        if choice == "1":
-            add_student()
-        elif choice == "2":
-            remove_student()
-        elif choice == "3":
-            view_students()
-        elif choice == "4":
-            break
-        else:
-            print("Invalid choice. Please try again.")
+# Function to delete a customer
+def delete_customer():
+    name = input("Enter customer name: ")
+    if name in customers:
+        del customers[name]
+        print(f"Customer {name} deleted successfully")
+    else:
+        print(f"Customer {name} not found")
 
-if __name__ == "__main__":
-    main()
+# Main loop
+while True:
+    print("\nMenu:")
+    print("1. Add a new customer")
+    print("2. Retrieve a customer's information")
+    print("3. Update a customer's information")
+    print("4. Delete a customer")
+    print("5. Exit")
+
+    choice = input("\nEnter choice (1-5): ")
+    if choice == "1":
+        add_customer()
+    elif choice == "2":
+        get_customer()
+    elif choice == "3":
+        update_customer()
+    elif choice == "4":
+        delete_customer()
+    elif choice == "5":
+        break
+    else:
+        print("Invalid choice, please try again")
